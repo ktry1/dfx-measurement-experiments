@@ -1,0 +1,4 @@
+// Version: 1.0.0
+actor {
+  stable var t : [var ?([var ?Nat], [var ?Nat], [var Nat], [var Nat32])]
+};

@@ -1,0 +1,8 @@
+// Version: 1.0.0
+type Data<K, V> = {var count : Nat; kvs : [var ?(K, V)]};
+type Internal<K, V> = {children : [var ?Node<K, V>]; data : Data<K, V>};
+type Leaf<K, V> = {data : Data<K, V>};
+type Node<K, V> = {#internal : Internal<K, V>; #leaf : Leaf<K, V>};
+actor {
+  stable var t : {order : Nat; var root : Node<Nat, Nat>; var size : Nat}
+};

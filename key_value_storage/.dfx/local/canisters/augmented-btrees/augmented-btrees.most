@@ -1,0 +1,15 @@
+// Version: 1.0.0
+type Branch<K, V> =
+  ([var Nat], [var ?Branch<K, V>], [var ?K], [var ?Node<K, V>]);
+type Leaf<K, V> =
+  ([var Nat], [var ?Branch<K, V>], [var ?Leaf<K, V>], [var ?(K, V)]);
+type Node<K, V> = {#branch : Branch<K, V>; #leaf : Leaf<K, V>};
+actor {
+  stable var t :
+    {
+      var next_id : Nat;
+      order : Nat;
+      var root : Node<Nat, Nat>;
+      var size : Nat
+    }
+};

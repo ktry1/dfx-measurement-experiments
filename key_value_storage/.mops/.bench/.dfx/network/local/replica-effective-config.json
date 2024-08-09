@@ -1,0 +1,31 @@
+{
+  "replica_rev": "246d0ce0784d9990c06904809722ce5c2c816269",
+  "type": "replica",
+  "config": {
+    "http_handler": {
+      "port": null,
+      "write_port_to": "/home/k/Documents/Пары/Магистерская работа/experiments/data_storage/.mops/.bench/.dfx/network/local/replica-configuration/replica-1.port"
+    },
+    "state_manager": {
+      "state_root": "/home/k/Documents/Пары/Магистерская работа/experiments/data_storage/.mops/.bench/.dfx/network/local/state/replicated_state"
+    },
+    "crypto": {
+      "crypto_root": "/home/k/Documents/Пары/Магистерская работа/experiments/data_storage/.mops/.bench/.dfx/network/local/state/crypto_store"
+    },
+    "artifact_pool": {
+      "consensus_pool_path": "/home/k/Documents/Пары/Магистерская работа/experiments/data_storage/.mops/.bench/.dfx/network/local/state/consensus_pool"
+    },
+    "subnet_type": "application",
+    "btc_adapter": {
+      "enabled": false,
+      "socket_path": null
+    },
+    "canister_http_adapter": {
+      "enabled": true,
+      "socket_path": "/tmp/ic-https-outcalls-adapter-socket.7429.1722580043"
+    },
+    "log_level": "error",
+    "artificial_delay": 0,
+    "use_old_metering": false
+  }
+}

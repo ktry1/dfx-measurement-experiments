@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "canisters": {},
+  "defaults": {
+    "build": {
+      "packtool": "mops sources"
+    }
+  },
+  "networks": {
+    "local": {
+      "type": "ephemeral",
+      "bind": "127.0.0.1:4944"
+    }
+  }
+}

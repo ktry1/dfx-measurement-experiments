@@ -1,0 +1,47 @@
+{
+  "canisters": {
+    "internet_identity": {
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "frontend": {},
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    },
+    "map": {
+      "main": "src/map.mo",
+      "type": "motoko"
+    },
+    "StableRBTree": {
+      "main": "src/StableRBTree.mo",
+      "type": "motoko"
+    },
+    "Trie": {
+      "main": "src/Trie.mo",
+      "type": "motoko"
+    },
+    "memory-hashtable": {
+      "main": "src/memory-hashtable.mo",
+      "type": "motoko"
+    },
+    "augmented-btrees": {
+      "main": "src/augmented-btrees.mo",
+      "type": "motoko"
+    },
+    "stableheapbtreemap": {
+      "main": "src/stableheapbtreemap.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "--force-gc",
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

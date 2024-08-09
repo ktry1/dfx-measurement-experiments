@@ -1,0 +1,39 @@
+// Version: 1.0.0
+type AssocList<K, V> = List<(K, V)>;
+type AssocList__1<K, V> = AssocList<K, V>;
+type Branch<K, V> = {left : Trie<K, V>; right : Trie<K, V>; size : Nat};
+type Branch__5<K, V> =
+  ([var Nat], [var ?Branch__5<K, V>], [var ?K], [var ?Node__5<K, V>],
+   [var ?(K, V)]);
+type FreeMemory = MaxBpTree__5<Nat, Nat>;
+type FreeMemory__1 = FreeMemory;
+type Hash = Nat32;
+type Key<K> = {hash : Hash; key : K};
+type Leaf<K, V> = {keyvals : AssocList__1<Key<K>, V>; size : Nat};
+type Leaf__5<K, V> =
+  ([var Nat], [var ?Branch__5<K, V>], [var ?Leaf__5<K, V>], [var ?(K, V)],
+   [var ?(K, V)]);
+type List<T> = ?(T, List<T>);
+type MaxBpTree<K, V> =
+  {var next_id : Nat; order : Nat; var root : Node__5<K, V>; var size : Nat};
+type MaxBpTree__5<K, V> = MaxBpTree<K, V>;
+type MemoryRegion =
+  {
+    var deallocated : Nat;
+    var free_memory : FreeMemory__1;
+    var pages : Nat;
+    region : Region;
+    var size : Nat
+  };
+type Node__5<K, V> = {#branch : Branch__5<K, V>; #leaf : Leaf__5<K, V>};
+type StableTrieMap<K, V> = {var _size : Nat; var trie : Trie<K, V>};
+type Trie<K, V> = {#branch : Branch<K, V>; #empty; #leaf : Leaf<K, V>};
+actor {
+  stable var mem :
+    {
+      index_mappings : StableTrieMap<Nat32, List<Nat64>>;
+      memory_region : MemoryRegion;
+      replaceBufferAsBlob : [Nat8];
+      replaceBufferSize : Nat64
+    }
+};

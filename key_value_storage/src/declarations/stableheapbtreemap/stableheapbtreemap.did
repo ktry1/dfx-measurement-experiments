@@ -1,0 +1,19 @@
+type CanisterMemoryInfo = 
+ record {
+   rts_collector_instructions: nat;
+   rts_heap_size: nat;
+   rts_memory_size: nat;
+   rts_mutator_instructions: nat;
+   rts_reclaimed: nat;
+   rts_stable_memory_size: nat;
+   rts_total_allocation: nat;
+ };
+service : {
+  add_batch: (nat, nat) -> (nat64);
+  delete_all: () -> (nat64);
+  delete_batch: (nat, nat) -> (nat64);
+  for_loop: (nat, nat) -> (nat64);
+  getRtsData: () -> (CanisterMemoryInfo) composite_query;
+  read_batch: (nat, nat) -> (nat64);
+  update_batch: (nat, nat) -> (nat64);
+}
