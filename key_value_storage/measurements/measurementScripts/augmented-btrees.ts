@@ -1,6 +1,6 @@
 //Dependencies
 //Importing interface from generated declarations
-import { idlFactory, augmented_btrees } from '../../../src/declarations/augmented-btrees';
+import { idlFactory, augmented_btrees } from '../../src/declarations/augmented-btrees';
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel } from 'motoko-benchmarking-ts';
 

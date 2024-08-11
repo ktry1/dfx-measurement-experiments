@@ -1,7 +1,0 @@
-// Version: 1.0.0
-type Color = {#B; #R};
-type Tree<K, V> = {#leaf; #node : (Color, Tree<K, V>, (K, ?V), Tree<K, V>)};
-actor {
-  stable var t :
-    {#leaf; #node : (Color, Tree<Nat, Nat>, (Nat, ?Nat), Tree<Nat, Nat>)}
-};

@@ -1,5 +1,5 @@
 //Dependencies
-import { idlFactory, stableheapbtreemap } from '../../../src/declarations/stableheapbtreemap';
+import { idlFactory, stableheapbtreemap } from '../../src/declarations/stableheapbtreemap';
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel, getRtsData } from 'motoko-benchmarking-ts';
 

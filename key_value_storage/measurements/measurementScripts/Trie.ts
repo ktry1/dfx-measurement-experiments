@@ -1,5 +1,5 @@
 //Dependencies
-import { idlFactory, Trie } from '../../../src/declarations/Trie';
+import { idlFactory, Trie } from '../../src/declarations/Trie';
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel, getRtsData } from 'motoko-benchmarking-ts';
 

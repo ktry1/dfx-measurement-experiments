@@ -1,5 +1,5 @@
 //Dependencies
-import {idlFactory, memory_hashtable } from '../../../src/declarations/memory-hashtable';
+import {idlFactory, memory_hashtable } from '../../src/declarations/memory-hashtable';
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel, getRtsData } from 'motoko-benchmarking-ts';
 

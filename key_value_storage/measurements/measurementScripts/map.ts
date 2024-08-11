@@ -1,5 +1,5 @@
 //Dependencies
-import { idlFactory, map } from "../../../src/declarations/map";
+import { idlFactory, map } from "../../src/declarations/map";
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel, getRtsData } from 'motoko-benchmarking-ts';
 
