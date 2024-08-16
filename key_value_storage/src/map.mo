@@ -12,7 +12,7 @@ actor map {
   stable var t = Map.new<Nat, Nat>();
 
   public func add_batch(start_index: Nat, total_elements: Nat) : async (Nat64) {
-        let end_index = start_index + total_elements;
+        let end_index = start_index + total_elements - 1;
         let count = IC.countInstructions(
             func () {
                 for (i in Iter.range(start_index, end_index)) {
@@ -24,12 +24,12 @@ actor map {
   };
 
   public func delete_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
      let count = IC.countInstructions(
             func () {
                 for (i in Iter.range(start_index, end_index)) {
-                  let _value = Map.remove(t, nhash, i);
-                  //Map.delete(t, nhash, i);
+                  //let _value = Map.remove(t, nhash, i);
+                  Map.delete(t, nhash, i);
                 }                
             }
         );
@@ -37,7 +37,7 @@ actor map {
   };
 
   public func update_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
           func () {
               for (i in Iter.range(start_index, end_index)) {
@@ -49,7 +49,7 @@ actor map {
   };
 
   public func read_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
           func () {
               for (i in Iter.range(start_index, end_index)) {
@@ -70,7 +70,7 @@ actor map {
   };
 
   public func for_loop(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
             func () {
               for (i in Iter.range(start_index, end_index)) {}    

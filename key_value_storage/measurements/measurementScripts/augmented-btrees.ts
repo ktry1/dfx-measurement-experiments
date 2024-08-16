@@ -65,7 +65,7 @@ async function main() {
     console.log(`==============`);
     //Generating headers for Excel table from test values
     const headers = ['', ...testValues.map(value => value.toString())];
-    saveToExcel(`./measurements/key_value_storage/results/${canisterName}.xlsx`, ["Add", "Read", "Update", "Delete"], headers, testResults);
+    saveToExcel(`./measurements/results/${canisterName}.xlsx`, ["Add", "Read", "Update", "Delete"], headers, testResults);
     
     //Wrapping up the test
     await stopDfx();

@@ -20,7 +20,7 @@ actor memory_hashtable {
   var t = lib.MemoryHashTable(mem);
 
   public func add_batch(start_index: Nat, total_elements: Nat) : async (Nat64) {
-        let end_index = start_index + total_elements;
+        let end_index = start_index + total_elements - 1;
         let count = IC.countInstructions(
             func () {
                 for (i in Iter.range(start_index, end_index)) {
@@ -32,7 +32,7 @@ actor memory_hashtable {
   };
 
   public func delete_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
      let count = IC.countInstructions(
             func () {
                 for (i in Iter.range(start_index, end_index)) {
@@ -44,7 +44,7 @@ actor memory_hashtable {
   };
 
   public func update_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
           func () {
               for (i in Iter.range(start_index, end_index)) {
@@ -57,7 +57,7 @@ actor memory_hashtable {
   };
 
   public func read_batch(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
           func () {
               for (i in Iter.range(start_index, end_index)) {
@@ -78,7 +78,7 @@ actor memory_hashtable {
   };
 
   public func for_loop(start_index: Nat, total_elements: Nat) : async(Nat64) {
-    let end_index = start_index + total_elements;
+    let end_index = start_index + total_elements - 1;
     let count = IC.countInstructions(
             func () {
               for (i in Iter.range(start_index, end_index)) {}    
