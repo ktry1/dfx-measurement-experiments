@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dfx-terminal-commands": "^1.0.3",
+    "motoko-benchmarking-ts": "^1.0.0"
+  }
+}

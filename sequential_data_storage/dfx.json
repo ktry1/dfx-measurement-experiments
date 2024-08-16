@@ -1,0 +1,32 @@
+{
+  "canisters": {
+    "Array": {
+      "main": "src/Array_.mo",
+      "type": "motoko"
+    },
+    "vector": {
+      "main": "src/vector.mo",
+      "type": "motoko"
+    },
+    "buffer-deque": {
+      "main": "src/buffer-deque.mo",
+      "type": "motoko"
+    },
+    "linked-list": {
+      "main": "src/linked-list.mo",
+      "type": "motoko"
+    },
+    "memory-buffer": {
+      "main": "src/memory-buffer.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "--force-gc ",
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
