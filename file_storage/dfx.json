@@ -1,0 +1,36 @@
+{
+  "canisters": {
+    "file-scaling-manager": {
+      "main": "src/upload-file/FileScalingManager.mo",
+      "type": "motoko"
+    },
+    "file-storage": {
+      "main": "src/upload-file/FileStorage.mo",
+      "type": "motoko"
+    },
+    "ic-assets": {
+      "main": "src/ic-assets.mo",
+      "type": "motoko"
+    },
+    "assets": {
+      "main": "src/assets.mo",
+      "type": "motoko"
+    },
+    "file-scaling-manager_modified": {
+      "main": "src/upload-file+assets_modified/FileScalingManager.mo",
+      "type": "motoko"
+    },
+    "assets_modified": {
+      "main": "src/upload-file+assets_modified/assets.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "--force-gc",
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

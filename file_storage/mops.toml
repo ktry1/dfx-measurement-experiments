@@ -1,0 +1,6 @@
+[dependencies]
+base = "0.11.1"
+map = "9.0.1"
+ic-assets = "0.0.1"
+assets = "0.2.2"
+vector = "0.4.1"
