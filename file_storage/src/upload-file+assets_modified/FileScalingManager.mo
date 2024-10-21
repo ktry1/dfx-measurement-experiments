@@ -147,7 +147,6 @@ actor class FileScalingManager(is_prod : Bool) = this {
 	system func postupgrade() {
 		canister_records := Map.fromIter<Text, CanisterInfo>(canister_records_stable_storage.vals(), thash);
 
-		ignore Timer.recurringTimer(#seconds(600), check_canister_is_full);
 		ignore Timer.recurringTimer(#seconds(600), update_health);
 
 		canister_records_stable_storage := [];
