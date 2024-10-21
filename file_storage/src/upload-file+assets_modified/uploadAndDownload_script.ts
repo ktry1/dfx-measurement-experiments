@@ -1,7 +1,7 @@
 //Dependencies
 import { startDfx, stopDfx, deployCanister, fabricateIcpToCycles, getCanisterId, executeCommand } from 'dfx-terminal-commands';
 import { makeIdentity, makeAgent, makeActor, MeasurementData, measureFunction, purifyMeasurementData, saveToExcel, getRtsData, measureDifferenceRts, RtsData, addRtsData, saveToExcelRts } from 'motoko-benchmarking-ts';
-import { idlFactory as managerIdlFactory, file_scaling_manager } from "../declarations/file-scaling-manager";
+import { idlFactory as managerIdlFactory, file_scaling_manager_modified } from "../declarations/file-scaling-manager_modified";
 import { idlFactory as storageIdlFactory, assets_modified } from '../declarations/assets_modified';
 import { Actor, HttpAgent } from '@dfinity/agent';
 
@@ -41,7 +41,7 @@ async function main() {
     await executeCommand("dfx", ["deploy", canisterName, "--argument", "false"]);
     const canisterId = await getCanisterId(canisterName);
     //Creating actor for calling canister 
-    const managerActor: typeof file_scaling_manager = makeActor(agent, managerIdlFactory, canisterId);
+    const managerActor: typeof file_scaling_manager_modified = makeActor(agent, managerIdlFactory, canisterId);
     //Topping the canister up
     await fabricateIcpToCycles(canisterName, 1000000);
     await managerActor.init();
@@ -75,7 +75,7 @@ async function main() {
     console.log(`All done!`);
 }
 
-async function uploadChunks(file_path: string, actor: typeof assets_modified, managerActor: typeof file_scaling_manager, chunkSizeBytes: number, batchId: bigint, start_offset: number, uploadBar: cliProgress.Bar, maxConcurrentUploads: number, maxRetries: number) {
+async function uploadChunks(file_path: string, actor: typeof assets_modified, managerActor: typeof file_scaling_manager_modified, chunkSizeBytes: number, batchId: bigint, start_offset: number, uploadBar: cliProgress.Bar, maxConcurrentUploads: number, maxRetries: number) {
     let chunkIds: bigint[] = [];
     let promises: ChunkUploadPromise[] = [];
 
@@ -247,7 +247,7 @@ async function commitBatch(file_path: string, actor: typeof assets_modified, bat
     }
 }
 
-async function getNewStorageAddress(prevActor: typeof assets_modified, managerActor: typeof file_scaling_manager) : Promise<string> {
+async function getNewStorageAddress(prevActor: typeof assets_modified, managerActor: typeof file_scaling_manager_modified) : Promise<string> {
     let delayMs = 2000;
     let retries = 3;
     let prevAddress = Actor.canisterIdOf(prevActor).toText();
@@ -278,7 +278,7 @@ async function updateStorageActor(agent: HttpAgent, newStorageAddress: string) :
     return newActor;
 }
 
-async function uploadAsset(file_path: string, chunkSizeBytes: number, actor: typeof assets_modified, managerActor: typeof file_scaling_manager, agent: HttpAgent) : Promise<AssetMetadata[]> {
+async function uploadAsset(file_path: string, chunkSizeBytes: number, actor: typeof assets_modified, managerActor: typeof file_scaling_manager_modified, agent: HttpAgent) : Promise<AssetMetadata[]> {
     let MAX_CONCURRENT_UPLOADS = 5;
     let MAX_RETRIES = 3;
     

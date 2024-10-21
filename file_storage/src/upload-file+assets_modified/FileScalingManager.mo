@@ -5,7 +5,7 @@ import Principal "mo:base/Principal";
 import Time "mo:base/Time";
 import Timer "mo:base/Timer";
 
-import FileStorage "assets";
+import AssetStorage "AssetStorage";
 
 import Types "./upload-fileDependencies/types";
 import TypesIC "./upload-fileDependencies/types_ic";
@@ -33,7 +33,7 @@ actor class FileScalingManager(is_prod : Bool) = this {
 
 	private func create_file_storage_canister() : async () {
 		Cycles.add(CYCLE_AMOUNT);
-		let file_storage_actor = await FileStorage.FileStorage();
+		let file_storage_actor = await AssetStorage.AssetStorage();
 		//Authorizing the owner
 		ignore file_storage_actor.authorize(owner);
 

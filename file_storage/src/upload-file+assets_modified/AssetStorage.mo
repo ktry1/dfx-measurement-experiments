@@ -14,7 +14,7 @@ import Result "mo:base/Result";
 import Error "mo:base/Error";
 import Principal "mo:base/Principal";
 
-shared ({ caller = creator }) actor class FileStorage() {
+shared ({ caller = creator }) actor class AssetStorage() {
   stable var entries : Assets.SerializedEntries = ([], [creator]);
   let assets = Assets.Assets({
     serializedEntries = entries;

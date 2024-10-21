@@ -21,7 +21,7 @@
       "type": "motoko"
     },
     "assets_modified": {
-      "main": "src/upload-file+assets_modified/assets.mo",
+      "main": "src/upload-file+assets_modified/AssetStorage.mo",
       "type": "motoko"
     }
   },
