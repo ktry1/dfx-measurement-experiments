@@ -1,0 +1,21 @@
+[package]
+name = "candb"
+version = "1.0.8"
+description = "CanDB is a flexible, performant, and horizontally scalable non-relational multi-canister data store built for the Internet Computer."
+repository = "https://github.com/ORIGYN-SA/CanDB"
+
+[dependencies]
+base = "https://github.com/dfinity/motoko-base#moc-0.10.0@a15ca7cd26335505e103288654f480a44463d844"
+stable-hash-map = "https://github.com/canscale/StableHashMap#v0.2.1@eb7edf4127233f2b1f3732ede7e2c55827ac6886"
+btree = "https://github.com/canscale/StableHeapBTreeMap#v0.3.2@9561ad0f24ee3919036bb26413a77dd4b14597e0"
+array = "https://github.com/aviate-labs/array.mo#v0.2.0@863a668bcbb3c3799a62c36b2cba2c32d1fcc433"
+encoding = "https://github.com/aviate-labs/encoding.mo#v0.3.2@8e0fe1d8f5c2d284e77d719703c42e0e271839b1"
+stable-rbtree = "https://github.com/canscale/StableRBTree#v0.6.1@465e86cd7c7755722bffda47fd707021da344956"
+stablebuffer = "https://github.com/skilesare/StableBuffer#v0.2.0@110660769d11ba93c618dc4712525d20503bdc37"
+map = "https://github.com/ZhenyaUsenko/motoko-hash-map#v7.0.0@f0e25632e5da80118274e78ceeb5bec95f3c2b81"
+candy = "https://github.com/icdevsorg/candy_library#v0.3.0@907a4e7363aac6c6a4e114ebc73e3d3f21e138af"
+stablebuffer_1_3_0 = "https://github.com/canscale/StableBuffer#v1.3.0@acdde6bb5b939227997cebdbb8919d2e6da8691c"
+map9 = "https://github.com/ZhenyaUsenko/motoko-hash-map#v9.0.1@10b68f6ea8df5e72dfa4c07a50c8bb60a916c233"
+
+[dev-dependencies]
+test = "1.0.1"

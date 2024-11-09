@@ -1,0 +1,43 @@
+{
+  "canisters": {
+    "internet_identity": {
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "frontend": {},
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    }, 
+    "rxmodb": {
+      "main": "src/rxmodb/rxmodb.mo",
+      "type": "motoko"
+    },
+    "candb_index": {
+      "main": "src/candb/index.mo", 
+      "type": "motoko"
+    },
+    "candb_service": {
+      "main": "src/candb/service.mo",
+      "type": "motoko"
+    },
+    "nacdb_index": {
+      "main": "src/nacdb/index.mo",
+      "type": "motoko"
+    },
+    "nacdb_partition": {
+      "main": "src/nacdb/partition.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "--force-gc",
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

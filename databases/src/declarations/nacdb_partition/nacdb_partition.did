@@ -1,0 +1,183 @@
+type ScanLimitResult = 
+ record {
+   nextKey: opt text;
+   results: vec record {
+                  text;
+                  AttributeValue;
+                };
+ };
+type SK = text;
+type RtsData = 
+ record {
+   rts_collector_instructions: nat;
+   rts_heap_size: nat;
+   rts_memory_size: nat;
+   rts_mutator_instructions: nat;
+   rts_reclaimed: nat;
+   rts_stable_memory_size: nat;
+   rts_total_allocation: nat;
+ };
+type Partition = 
+ service {
+   add_batch: (nat, nat, nat) -> (nat64);
+   createOuter:
+    (record {
+       innerKey: InnerSubDBKey;
+       outerKey: OuterSubDBKey;
+       part: principal;
+     }) ->
+    (record {
+       inner: record {
+                canister: principal;
+                key: InnerSubDBKey;
+              };
+       outer: record {
+                canister: principal;
+                key: OuterSubDBKey;
+              };
+     });
+   /// Cycles ///
+   cycles_simple_availableCycles: () -> (nat) query;
+   cycles_simple_topUpCycles: (nat) -> () oneway;
+   deleteInner: (record {
+                   innerKey: InnerSubDBKey;
+                   sk: SK;
+                 }) -> ();
+   deleteSubDBInner: (record {innerKey: InnerSubDBKey;}) -> ();
+   deleteSubDBOuter: (record {outerKey: OuterSubDBKey;}) -> ();
+   delete_all: () -> (nat64);
+   delete_batch: (nat, nat, nat) -> (nat64);
+   for_loop: (nat, nat) -> (nat64);
+   getByInner: (record {
+                  innerKey: InnerSubDBKey;
+                  sk: SK;
+                }) -> (opt AttributeValue) query;
+   getByOuter: (record {
+                  outerKey: OuterSubDBKey;
+                  sk: SK;
+                }) -> (opt AttributeValue);
+   getInner: (record {outerKey: OuterSubDBKey;}) ->
+    (opt record {
+           canister: principal;
+           key: InnerSubDBKey;
+         }) query;
+   getRtsData: () -> (RtsData) query;
+   getSubDBUserDataInner: (record {innerKey: InnerSubDBKey;}) -> (opt text);
+   getSubDBUserDataOuter: (record {outerKey: OuterSubDBKey;}) -> (opt text);
+   hasByInner: (record {
+                  innerKey: InnerSubDBKey;
+                  sk: SK;
+                }) -> (bool) query;
+   hasByOuter: (record {
+                  outerKey: OuterSubDBKey;
+                  sk: SK;
+                }) -> (bool);
+   hasSubDBByInner: (record {innerKey: InnerSubDBKey;}) -> (bool) query;
+   hasSubDBByOuter: (record {outerKey: OuterSubDBKey;}) -> (bool);
+   isOverflowed: () -> (bool) query;
+   putLocation:
+    (record {
+       innerCanister: principal;
+       innerKey: InnerSubDBKey;
+       outerKey: OuterSubDBKey;
+     }) -> ();
+   rawDeleteSubDB: (record {innerKey: InnerSubDBKey;}) -> ();
+   rawGetSubDB: (record {innerKey: InnerSubDBKey;}) ->
+    (opt record {
+           map: vec record {
+                      SK;
+                      AttributeValue;
+                    };
+           userData: text;
+         }) query;
+   rawInsertSubDB:
+    (record {
+       hardCap: opt nat;
+       innerKey: opt InnerSubDBKey;
+       map: vec record {
+                  SK;
+                  AttributeValue;
+                };
+       userData: text;
+     }) -> (record {innerKey: InnerSubDBKey;});
+   rawInsertSubDBAndSetOuter:
+    (record {
+       hardCap: opt nat;
+       keys: opt record {
+                   innerKey: InnerSubDBKey;
+                   outerKey: OuterSubDBKey;
+                 };
+       map: vec record {
+                  SK;
+                  AttributeValue;
+                };
+       userData: text;
+     }) -> (record {
+              innerKey: InnerSubDBKey;
+              outerKey: OuterSubDBKey;
+            });
+   read_batch: (nat, nat, nat) -> (nat64);
+   scanLimitInner:
+    (record {
+       dir: Direction;
+       innerKey: InnerSubDBKey;
+       limit: nat;
+       lowerBound: SK;
+       upperBound: SK;
+     }) -> (ScanLimitResult) query;
+   scanLimitOuter:
+    (record {
+       dir: Direction;
+       limit: nat;
+       lowerBound: text;
+       outerKey: OuterSubDBKey;
+       upperBound: text;
+     }) -> (ScanLimitResult);
+   scanSubDBs: () ->
+    (vec
+      record {
+        OuterSubDBKey;
+        record {
+          canister: principal;
+          key: InnerSubDBKey;
+        };
+      }) query;
+   startInsertingImpl:
+    (record {
+       innerKey: InnerSubDBKey;
+       sk: SK;
+       value: AttributeValue;
+     }) -> ();
+   subDBSizeByInner: (record {innerKey: InnerSubDBKey;}) -> (opt nat) query;
+   subDBSizeByOuter: (record {outerKey: OuterSubDBKey;}) -> (opt nat);
+   subDBSizeOuterImpl: (record {outerKey: OuterSubDBKey;}) -> (opt nat);
+   superDBSize: () -> (nat) query;
+   update_batch: (nat, nat, nat) -> (nat64);
+ };
+type OuterSubDBKey = nat;
+type InnerSubDBKey = nat;
+type Direction = 
+ variant {
+   bwd;
+   fwd;
+ };
+type AttributeValuePrimitive = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "text": text;
+ };
+type AttributeValue = 
+ variant {
+   arrayBool: vec bool;
+   arrayFloat: vec float64;
+   arrayInt: vec int;
+   arrayText: vec text;
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "text": text;
+   tuple: vec AttributeValuePrimitive;
+ };
+service : () -> Partition

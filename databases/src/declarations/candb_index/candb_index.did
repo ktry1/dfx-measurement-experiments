@@ -1,0 +1,23 @@
+type RtsData = 
+ record {
+   rts_collector_instructions: nat;
+   rts_heap_size: nat;
+   rts_memory_size: nat;
+   rts_mutator_instructions: nat;
+   rts_reclaimed: nat;
+   rts_stable_memory_size: nat;
+   rts_total_allocation: nat;
+ };
+type IndexCanister = 
+ service {
+   autoScaleHelloServiceCanister: (text) -> (text);
+   createHelloServiceCanisterByGroup: (text) -> (opt text);
+   /// @required API (Do not delete or change)
+   /// 
+   /// Get all canisters for an specific PK
+   /// 
+   /// This method is called often by the candb-client query & update methods. 
+   getCanistersByPK: (text) -> (vec text) query;
+   getRtsData: () -> (RtsData) query;
+ };
+service : () -> IndexCanister

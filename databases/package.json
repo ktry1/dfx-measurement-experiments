@@ -1,0 +1,33 @@
+{
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "name": "data_storage",
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "prebuild": "npm run prebuild --workspaces --if-present",
+    "pretest": "npm run prebuild --workspaces --if-present",
+    "start": "npm start --workspaces --if-present",
+    "test": "npm test --workspaces --if-present"
+  },
+  "type": "module",
+  "workspaces": [
+    "src/data_storage_frontend"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.14.13"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.0.0",
+    "@dfinity/identity": "^2.0.0",
+    "@dfinity/identity-secp256k1": "^2.0.0",
+    "@dfinity/principal": "^2.1.3",
+    "cli-table3": "^0.6.5",
+    "dfx-terminal-commands": "^1.0.3",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "motoko-benchmarking-ts": "^1.0.0",
+    "tsx": "^4.16.2"
+  }
+}

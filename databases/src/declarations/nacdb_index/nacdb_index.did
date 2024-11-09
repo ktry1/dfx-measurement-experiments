@@ -1,0 +1,93 @@
+type SK = text;
+type RtsData = 
+ record {
+   rts_collector_instructions: nat;
+   rts_heap_size: nat;
+   rts_memory_size: nat;
+   rts_mutator_instructions: nat;
+   rts_reclaimed: nat;
+   rts_stable_memory_size: nat;
+   rts_total_allocation: nat;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok:
+    record {
+      inner: record {
+               canister: principal;
+               key: InnerSubDBKey;
+             };
+      outer: record {
+               canister: principal;
+               key: OuterSubDBKey;
+             };
+    };
+ };
+type OuterSubDBKey = nat;
+type InnerSubDBKey = nat;
+type Index = 
+ service {
+   add_batch: (nat, nat, nat, principal) -> (nat64);
+   createPartition: () -> (principal);
+   createSubDB: (vec nat8, record {
+                             hardCap: opt nat;
+                             userData: text;
+                           }) ->
+    (record {
+       inner: record {
+                canister: principal;
+                key: InnerSubDBKey;
+              };
+       outer: record {
+                canister: principal;
+                key: OuterSubDBKey;
+              };
+     });
+   delete: (vec nat8,
+    record {
+      outerCanister: principal;
+      outerKey: OuterSubDBKey;
+      sk: SK;
+    }) -> ();
+   deleteSubDB: (vec nat8,
+    record {
+      outerCanister: principal;
+      outerKey: OuterSubDBKey;
+    }) -> ();
+   delete_all: (principal) -> ();
+   delete_batch: (nat, nat, nat, principal) -> (nat64);
+   for_loop: (nat, nat) -> (nat64);
+   getCanisters: () -> (vec principal) query;
+   getRtsData: () -> (RtsData) query;
+   init: () -> ();
+   insert: (vec nat8,
+    record {
+      hardCap: opt nat;
+      outerCanister: principal;
+      outerKey: OuterSubDBKey;
+      sk: SK;
+      value: AttributeValue;
+    }) -> (Result);
+   update_batch: (nat, nat, nat, principal) -> (nat64);
+ };
+type AttributeValuePrimitive = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "text": text;
+ };
+type AttributeValue = 
+ variant {
+   arrayBool: vec bool;
+   arrayFloat: vec float64;
+   arrayInt: vec int;
+   arrayText: vec text;
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "text": text;
+   tuple: vec AttributeValuePrimitive;
+ };
+service : () -> Index

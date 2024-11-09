@@ -1,0 +1,13 @@
+[dependencies]
+base = "0.11.1"
+stable-rbtree = "1.0.0"
+map = "9.0.1"
+vector = "0.3.1"
+memory-hashtable = "1.0.5"
+stableheapbtreemap = "1.5.0"
+enumeration = "0.1.1"
+bench = "1.0.0"
+rxmodb = "0.2.0"
+candb = "1.0.8"
+nacdb = "0.14.2"
+stable-buffer = "https://github.com/canscale/StableBuffer#v1.3.0@acdde6bb5b939227997cebdbb8919d2e6da8691c"

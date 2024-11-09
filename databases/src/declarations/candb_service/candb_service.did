@@ -1,0 +1,42 @@
+type ScalingOptions = 
+ record {
+   autoScalingHook: AutoScalingCanisterSharedFunctionHook;
+   sizeLimit: ScalingLimitType;
+ };
+type ScalingLimitType = 
+ variant {
+   count: nat;
+   heapSize: nat;
+ };
+type RtsData = 
+ record {
+   rts_collector_instructions: nat;
+   rts_heap_size: nat;
+   rts_memory_size: nat;
+   rts_mutator_instructions: nat;
+   rts_reclaimed: nat;
+   rts_stable_memory_size: nat;
+   rts_total_allocation: nat;
+ };
+type HelloService = 
+ service {
+   add_batch: (nat, nat) -> (nat64);
+   delete_all: () -> (nat64);
+   delete_batch: (nat, nat) -> (nat64);
+   for_loop: (nat, nat) -> (nat64);
+   /// @recommended (not required) public API
+   getPK: () -> (text) query;
+   getRtsData: () -> (RtsData) query;
+   read_batch: (nat, nat) -> (nat64);
+   /// @required public API (Do not delete or change)
+   skExists: (text) -> (bool) query;
+   /// @required public API (Do not delete or change)
+   transferCycles: () -> ();
+   update_batch: (nat, nat) -> (nat64);
+ };
+type AutoScalingCanisterSharedFunctionHook = func (text) -> (text);
+service : (record {
+             owners: opt vec principal;
+             partitionKey: text;
+             scalingOptions: ScalingOptions;
+           }) -> HelloService
